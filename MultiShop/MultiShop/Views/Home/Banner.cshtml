@@ -1,0 +1,26 @@
+﻿@model List<MutiShopDataContext.Model.DanhMuc>
+<div class="banner-section spad">
+    <div class="container-fluid">
+        <div class="row">
+            @foreach (var item in Model)
+            {
+                <div class="col-lg-6">
+                    <div class="single-banner">
+                        @if (item.Id == 1)
+                        {
+                            <img src="~/Content/Site/img/banner-1.jpg" alt="">
+                        }
+                        else
+                        {
+                            <img src="~/Content/Site/img/banner-2.jpg" alt="">
+
+                        }
+                        <div class="inner-text">
+                            <h4>@item.TenDanhMuc</h4>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>

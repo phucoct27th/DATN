@@ -1,0 +1,25 @@
+﻿@model MutiShopDataContext.Model.QuanTri
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Areas/admin/Views/Shared/View.cshtml";
+}
+
+    <div class="wrapper">
+        @{Html.RenderAction("MainHeader", "Home"); }
+        @{Html.RenderAction("Menu", "Home"); }
+        <div class="content-wrapper" style="min-height: 53.7361px;">
+            <h3 class="text-danger">Có chắc bạn muốn xoá @Model.HoVaTen</h3>
+            <div>
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+
+                    <div class="form-actions no-color">
+                        <input type="submit" value="Xoá" class="btn btn-primary" /> |
+                        @Html.ActionLink("Back to List", "Index")
+                    </div>
+                }
+            </div>
+        </div>
+    </div>

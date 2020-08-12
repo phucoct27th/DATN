@@ -1,0 +1,188 @@
+﻿@model MutiShopDataContext.Model.KhachHang
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@{
+    var _ListDat = (List<MutiShopDataContext.Model.DatHang>)ViewBag.dathang;
+}
+@{ Html.RenderAction("Header", "Home"); }
+<div class="breacrumb-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="breadcrumb-text product-more">
+                    <a href="?"><i class="fa fa-home"></i> Home</a>
+                    <span>Account</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-4 sidebar ftco-animate fadeInUp ftco-animated" id="Show">
+            <div class="sidebar-wrap bg-light ftco-animate fadeInUp ftco-animated">
+                <h3 class="text-center">Trang cá nhân</h3>
+                <table id="show" class="table" width="400">
+                    <tbody>
+                        <tr>
+                            <td>Họ và tên</td>
+                            <td>@Model.HoVaTen</td>
+                        </tr>
+                        <tr>
+                            <td>Tên đăng nhập</td>
+                            <td>@Model.TenDangNhap</td>
+                        </tr>
+                        <tr>
+                            <td>Mật khẩu</td>
+                            <td>@Model.MatKhau</td>
+                        </tr>
+                        <tr>
+                            <td>Email</td>
+                            <td>@Model.Email</td>
+                        </tr>
+                        <tr>
+                            <td>Số điện thoại</td>
+                            <td>@Model.SoDienThoai</td>
+                        </tr>
+                        <tr>
+                            <td>Địa chỉ</td>
+                            <td>@Model.DiaChi</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <a class="btn btn-warning"  onclick="Update()">Cập nhật</a>
+                            </td>
+                            <td>
+                                <a class="btn btn-warning" href="~/Autenlt/DangXuat">Đăng Xuất</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+        <div class="col-lg-4 sidebar ftco-animate fadeInUp ftco-animated" id="Update" style="display:none">
+            <div class="sidebar-wrap bg-light ftco-animate fadeInUp ftco-animated">
+                <h3 class="text-center">Trang cá nhân</h3>
+                <form action="~/Acount/UpdateInfo/@Model.Id" method="post">
+                    <table id="show" class="table" width="400">
+                        <tbody>
+                            <tr>
+                                <td>Họ và tên</td>
+                                <td>
+                                    <input type="text" name="HoVaTen" value="@Model.HoVaTen" />
+                                    <input type="text" name="Id" value="@Model.Id" style="display:none" />
+                                </td>
+
+                            </tr>
+                            <tr>
+                                <td>Tên đăng nhập</td>
+                                <td>
+                                    <input type="text" name="TenDangNhap" value="@Model.TenDangNhap" readonly="readonly" style="background:#808080" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Mật khẩu</td>
+                                <td>
+                                    <input type="text" name="MatKhau" value="@Model.MatKhau" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Email</td>
+                                <td>
+                                    <input type="email" name="Email" value="@Model.Email" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Số điện thoại</td>
+                                <td>
+                                    <input type="tel" name="SoDienThoai" value="@Model.SoDienThoai" />
+                                </td>
+                            </tr> 
+                            <tr>
+                                <td>Địa chỉ</td>
+                                <td>
+                                    <input type="tel" name="DiaChi" value="@Model.DiaChi" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <input class="btn btn-warning" type="submit" value="Lưu lại" />
+                                </td>
+                                <td>
+                                    <a class="btn btn-warning" onclick="Show()">Huỷ</a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </form>
+            </div>
+        </div>
+        <script>
+            function Update()
+            {
+                document.getElementById("Show").style.display = "none"; 
+                document.getElementById("Update").style.display = "block"; 
+            }
+            function Show() {
+                document.getElementById("Show").style.display = "block";
+                document.getElementById("Update").style.display = "none";
+            }
+        </script>
+        <div class="col-lg-8 sidebar ftco-animate fadeInUp ftco-animated">
+            <div class="sidebar-wrap bg-light ftco-animate fadeInUp ftco-animated">
+                <h3>Quản lí đặt hàng</h3>
+                <table id="show" class="table" width="400">
+                    <tbody>
+                        <tr>
+                            <th>STT</th>
+                            <th>Sản phẩm</th>
+                            <th>Số lượng</th>
+                            <th>Địa chỉ giao hàng</th>
+                            <th>Thành tiền</th>
+                            <th>Trạng thái</th>
+                        </tr>
+                        @foreach (var item in _ListDat)
+                        {
+                            float tong = item.SoLuong.Value * item.SanPham.Gia.Value;
+                            <tr>
+                                <td>@item.MaDat</td>
+                                <td>@item.SanPham.TenSanPham</td>
+                                <td>@item.SoLuong</td>
+                                <td>@item.KhachHang.DiaChi</td>
+                                <td>@tong VND</td>
+                                <td>
+                                    @if (item.TrangThai == 0)
+                                    {
+                                        <p class="btn btn-warning">Đang Xử Lý</p>
+                                    }
+                                    else
+                                    if (item.TrangThai == 1)
+                                    {
+                                        <p class="btn btn-warning">Vận chuyển</p>
+                                    }
+                                    else
+                                     if (item.TrangThai == 2)
+                                    {
+                                        <p class="btn btn-warning">Đang rows</p>
+                                    } 
+                                    else
+                                     if (item.TrangThai == 3)
+                                    {
+                                        <p class="btn btn-warning">Hoàn thành</p>
+                                    }
+                                </td>
+                            </tr>
+                        }
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+@{ Html.RenderAction("Footer", "Home"); }
+

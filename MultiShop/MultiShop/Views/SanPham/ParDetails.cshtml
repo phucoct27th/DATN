@@ -1,0 +1,263 @@
+﻿@model MutiShopDataContext.Model.SanPham
+@{ 
+    var BL = (List<MutiShopDataContext.Model.BinhLuan>)ViewBag.BLuan;
+}
+<div class="col-lg-9">
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="product-pic-zoom" style="position: relative; overflow: hidden;">
+                <img class="product-big-img" src="~/Upload/images/@Model.Anh" alt="">
+                <div class="zoom-icon">
+                    <i class="fa fa-search-plus"></i>
+                </div>
+                <img role="presentation" alt="" src="~/Upload/images/@Model.Anh" class="zoomImg" style="position: absolute; top: -1.35512px; left: -14.9125px; opacity: 0; width: 440px; height: 520px; border: none; max-width: none; max-height: none;">
+            </div>
+            <div class="product-thumbs">
+                <div class="product-thumbs-track ps-slider owl-carousel owl-loaded owl-drag">
+
+
+
+
+                    <div class="owl-stage-outer"><div class="owl-stage" style="transform: translate3d(-139px, 0px, 0px); transition: all 1.2s ease 0s; width: 559px;"><div class="owl-item" style="width: 129.583px; margin-right: 10px;"><div class="pt active" data-imgbigurl="img/product-single/product-1.jpg"><img src="img/product-single/product-1.jpg" alt=""></div></div><div class="owl-item active" style="width: 129.583px; margin-right: 10px;"><div class="pt" data-imgbigurl="img/product-single/product-2.jpg"><img src="img/product-single/product-2.jpg" alt=""></div></div><div class="owl-item active" style="width: 129.583px; margin-right: 10px;"><div class="pt" data-imgbigurl="img/product-single/product-3.jpg"><img src="img/product-single/product-3.jpg" alt=""></div></div><div class="owl-item active" style="width: 129.583px; margin-right: 10px;"><div class="pt" data-imgbigurl="img/product-single/product-3.jpg"><img src="img/product-single/product-3.jpg" alt=""></div></div></div></div><div class="owl-nav"><button type="button" role="presentation" class="owl-prev"><i class="fa fa-angle-left"></i></button><button type="button" role="presentation" class="owl-next disabled"><i class="fa fa-angle-right"></i></button></div><div class="owl-dots disabled"></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="product-details">
+                <div class="pd-title">
+                    <span>oranges</span>
+                    <h3>@Model.TenSanPham</h3>
+                    <a href="#" class="heart-icon"><i class="icon_heart_alt"></i></a>
+                </div>
+
+                <div class="pd-desc">
+                    <p>
+                        @Model.NoiDung
+                    </p>
+                    <h4>@Model.Gia VND <span>629.99</span></h4>
+                </div>
+                <div class="pd-color">
+                    <h6>Màu sắc</h6>
+                    <div class="pd-color-choose">
+                        <div class="cc-item">
+                            <input type="radio" id="cc-black">
+                            <label for="cc-black"></label>
+                        </div>
+                        <div class="cc-item">
+                            <input type="radio" id="cc-yellow">
+                            <label for="cc-yellow" class="cc-yellow"></label>
+                        </div>
+                        <div class="cc-item">
+                            <input type="radio" id="cc-violet">
+                            <label for="cc-violet" class="cc-violet"></label>
+                        </div>
+                    </div>
+                </div>
+                <div class="pd-size-choose">
+                    <div class="sc-item">
+                        <input type="radio" id="sm-size">
+                        <label for="sm-size">s</label>
+                    </div>
+                    <div class="sc-item">
+                        <input type="radio" id="md-size">
+                        <label for="md-size">m</label>
+                    </div>
+                    <div class="sc-item">
+                        <input type="radio" id="lg-size">
+                        <label for="lg-size">l</label>
+                    </div>
+                    <div class="sc-item">
+                        <input type="radio" id="xl-size">
+                        <label for="xl-size">xs</label>
+                    </div>
+                </div>
+                <div class="quantity">
+                    <div class="pro-qty">
+                        <span class="dec qtybtn"></span>
+                        <input type="text" value="1">
+                        <span class="inc qtybtn"></span>
+                    </div>
+                    <a  onclick="DatHang(@Model.Id)"  class="primary-btn pd-cart">Thêm giỏ hàng</a>
+                </div>
+
+                <div class="pd-share">
+
+                    <div class="pd-social">
+                        <a href="#"><i class="ti-facebook"></i></a>
+                        <a href="#"><i class="ti-twitter-alt"></i></a>
+                        <a href="#"><i class="ti-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="product-tab">
+        <div class="tab-item">
+            <ul class="nav" role="tablist">
+                <li>
+                    <a class="active" data-toggle="tab" href="#tab-1" role="tab">Mô tả </a>
+                </li>
+                
+                <li>
+                    <a data-toggle="tab" href="#tab-3" role="tab">Bình luận</a>
+                </li>
+            </ul>
+        </div>
+        <div class="tab-item-content">
+            <div class="tab-content">
+                <div class="tab-pane fade-in active" id="tab-1" role="tabpanel">
+                    <div class="product-content">
+                        <div class="row">
+                            <div class="col-lg-7">
+                                <h5>Introduction</h5>
+                                <p>
+                                    
+                                </p>
+                                <h5></h5>
+                                <p>
+                                   
+                                </p>
+                            </div>
+                            <div class="col-lg-5">
+                                <img src="img/product-single/tab-desc.jpg" alt="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="tab-2" role="tabpanel">
+                    <div class="specification-table">
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <td class="p-catagory">Bình luận</td>
+                                    <td>
+                                        <div class="pd-rating">
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star-o"></i>
+                                            <span>(5)</span>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="p-catagory">Price</td>
+                                    <td>
+                                        <div class="p-price">$495.00</div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="p-catagory">Add To Cart</td>
+                                    <td>
+                                        <div class="cart-add">+ add to cart</div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="p-catagory">Availability</td>
+                                    <td>
+                                        <div class="p-stock">22 in stock</div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="p-catagory">Weight</td>
+                                    <td>
+                                        <div class="p-weight">1,3kg</div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="p-catagory">Size</td>
+                                    <td>
+                                        <div class="p-size">Xxl</div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="p-catagory">Color</td>
+                                    <td><span class="cs-color"></span></td>
+                                </tr>
+                                <tr>
+                                    <td class="p-catagory">Sku</td>
+                                    <td>
+                                        <div class="p-code">00012</div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="tab-3" role="tabpanel">
+                    <div class="customer-review-option">
+                        <h4>@BL.Count Bình luận</h4>
+                        <div class="comment-option">
+                            @foreach (var item in BL)
+                            {
+                                <div class="co-item">
+                                    <div class="avatar-pic">
+                                        <img src="img/product-single/avatar-1.png" alt="">
+                                    </div>
+                                    <div class="avatar-text">
+                                        <h5>@item.KhachHang.HoVaTen <span>27 Aug 2019</span></h5>
+                                        <div class="at-reply">@item.NoiDung</div>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                        @{
+                            int id = -1;
+                            if(Request.Cookies["infomation"] != null)
+                            {
+                                id = Int32.Parse(Request.Cookies["infomation"].Value);
+                            }
+
+                        }
+                        <div class="leave-comment">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <textarea name="BinhLuan" id="BinhLuan" placeholder="Nhập nội dung..."></textarea>
+                                    <button type="submit" onclick="BinhLuan()" class="site-btn">Gửi</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    async function BinhLuan(IdSanPham)
+    {
+        var noidung = $("#BinhLuan").val();
+        var ThanhVien = @id;
+        var SanPham = @Model.Id;
+        var data = {
+            IdSanPham: SanPham,
+            NoiDung: noidung,
+            IdKhachHang: ThanhVien
+        };
+        await $.ajax({
+            method: "POST",
+            url: result + "/SanPham/CreateBinhLuan",
+            data: JSON.stringify(data),
+            contentType: "application/json"
+        }).done(async function (data) {
+            window.location.reload();
+        });
+    }
+</script>
+<script>
+    async function DatHang(Id)
+    {
+        var datas = {
+            IdSanPham: Id
+        };
+        await $.ajax({
+            method: "POST",
+            url: result + "/DatHang/ThemDatHang",
+            data: JSON.stringify(datas),
+            contentType: "application/json"
+        }).done(async function (data) {
+            console.log(data)
+        });
+    }
+</script>

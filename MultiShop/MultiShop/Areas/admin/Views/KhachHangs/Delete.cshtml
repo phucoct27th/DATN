@@ -1,0 +1,86 @@
+﻿@model MutiShopDataContext.Model.KhachHang
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Areas/admin/Views/Shared/View.cshtml";
+}
+
+    <div class="wrapper">
+        @{Html.RenderAction("MainHeader", "Home"); }
+        @{Html.RenderAction("Menu", "Home"); }
+        <div class="content-wrapper" style="min-height: 53.7361px;">
+            <h3 class="text-danger">Có chắc bạn muốn xoá @Model.HoVaTen</h3>
+            <div>
+                <hr />
+                <dl class="dl-horizontal">
+                    <dt>
+                        Họ và tên
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.HoVaTen)
+                    </dd>
+
+                    <dt>
+                        Tên đăng nhập
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.TenDangNhap)
+                    </dd>
+
+                    <dt>
+                        Mật khẩu
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.MatKhau)
+                    </dd>
+
+                    <dt>
+                        Số điện thoại
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.SoDienThoai)
+                    </dd>
+
+                    <dt>
+                        Email
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Email)
+                    </dd>
+
+                    <dt>
+                        Địa chỉ
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.DiaChi)
+                    </dd>
+
+                    <dt>
+                        Trạng thái
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.TrangThai)
+                    </dd>
+
+                </dl>
+
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+
+                    <div class="form-actions no-color">
+                        <input type="submit" value="Xoá" class="btn btn-primary" /> |
+                        @Html.ActionLink("Back to List", "Index")
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+

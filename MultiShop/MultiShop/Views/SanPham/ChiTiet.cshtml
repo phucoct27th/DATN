@@ -1,0 +1,15 @@
+﻿@{
+    ViewBag.Title = "DanhSachSanPham";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@{ Html.RenderAction("Header", "Home"); }
+    <section class="product-shop spad page-details">
+        <div class="container">
+            <div class="row">
+                @{ Html.RenderAction("TimKiem", "SanPham"); }
+                @{ Html.RenderAction("ParDetails", "SanPham"); }
+            </div>
+        </div>
+    </section>
+@{ Html.RenderAction("Footer", "Home"); }

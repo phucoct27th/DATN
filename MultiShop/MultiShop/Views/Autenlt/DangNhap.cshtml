@@ -1,0 +1,95 @@
+﻿
+@{
+    ViewBag.Title = "DangNhap";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@{ Html.RenderAction("Header", "Home"); }
+<div class="register-login-section spad" id="login">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 offset-lg-3">
+                <div class="login-form">
+                    <h2>Đăng nhập</h2>
+                    <p style="text-align:center; color:red">@ViewBag.thongbao</p>
+                    <form action="~/Autenlt/DangNhap" method="post">
+                        <div class="group-input">
+                            <label for="username">Tài khoản</label>
+                            <input name="username" type="text" id="username">
+                        </div>
+                        <div class="group-input">
+                            <label for="pass">Mật Khẩu </label>
+                            <input name="pass" type="password" id="pass">
+                        </div>
+                        <div class="group-input gi-check">
+                            <div class="gi-more">
+                                <label for="save-pass">
+                                    Nhớ mật khẩu
+                                    <input type="checkbox" id="save-pass">
+                                    <span class="checkmark"></span>
+                                </label>
+                                <a href="#" class="forget-pass">Forget your Password</a>
+                            </div>
+                        </div>
+                        <input type="submit" class="site-btn login-btn" value="Đăng Nhâp" />
+                    </form>
+                    <div class="switch-login">
+                        <a onclick="HidenLogin()" class="or-login">Or Create An Account</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="register-login-section spad" id="regiter" style="display:block">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 offset-lg-3">
+                <div class="register-form">
+                    <h2>Đăng kí</h2>
+                    <form action="~/Autenlt/DangKi" method="post">
+                        <div class="group-input">
+                            <label for="username">Tên đăng nhập *</label>
+                            <input type="text" name="TenDangNhap" id="username">
+                        </div>
+                        <div class="group-input">
+                            <label for="pass">Password *</label>
+                            <input type="text" name="MatKhau" id="pass">
+                        </div>
+                        <div class="group-input">
+                            <label for="username">Họ và tên *</label>
+                            <input type="text" name="HoVaTen" id="username">
+                        </div>
+                        <div class="group-input">
+                            <label for="username">Số điện thoại*</label>
+                            <input type="tel" name="SoDienThoai" id="username">
+                        </div>
+                        <div class="group-input">
+                            <label for="username">Email*</label>
+                            <input type="email" name="Email" id="username">
+                        </div>
+                        <div class="group-input">
+                            <label for="username">Địa chỉ *</label>
+                            <input type="text" name="DiaChi" id="username">
+                        </div>
+                        <button type="submit" class="site-btn register-btn">Đăng kí</button>
+                    </form>
+                    <div class="switch-login">
+                        <a onclick="ShowLogin()" class="or-login">Or Login</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    function HidenLogin()
+    {
+        document.getElementById("regiter").style.display = "block";
+        document.getElementById("login").style.display = "none";
+    }
+    function ShowLogin() {
+        document.getElementById("regiter").style.display = "none";
+        document.getElementById("login").style.display = "block";
+    }
+</script>
+@{ Html.RenderAction("Footer", "Home"); }

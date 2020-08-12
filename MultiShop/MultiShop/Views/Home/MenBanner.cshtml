@@ -1,0 +1,63 @@
+﻿@model List<MutiShopDataContext.Model.SanPham>
+<section class="man-banner spad">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="filter-control">
+                    <ul>
+                        <li class="active">Quần jean</li>
+                        <li>Quần sfort</li>
+                        <li>Áo phông</li>
+                        <li>Áo somi</li>
+                        <li>áo khoác</li>
+                        <li>Áo len</li>
+                        <li>Giày</li>
+                    </ul>
+                </div>
+                <div class="product-slider owl-carousel owl-loaded owl-drag">
+                    <div class="owl-stage-outer">
+                        <div class="owl-stage" style="transform: translate3d(-907px, 0px, 0px); transition: all 1.2s ease 0s; width: 3026px;">
+                            @foreach (var item in Model.Take(7))
+                            {
+                                <div class="owl-item cloned" style="width: 277.529px; margin-right: 25px;">
+                                    <div class="product-item">
+                                        <div class="pi-pic">
+                                            <img src="~/Upload/images/@item.Anh" height="300px" width="270px" alt="">
+                                            <div class="icon">
+                                                <i class="icon_heart_alt"></i>
+                                            </div>
+                                            <ul>
+                                                <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
+                                                <li class="quick-view"><a href="#">Xem</a></li>
+                                                <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
+                                            </ul>
+                                        </div>
+                                        <div class="pi-text">
+                                            <div class="catagory-name"></div>
+                                            <a href="#">
+                                                <h5>@item.TenSanPham</h5>
+                                            </a>
+                                            <div class="product-price">
+                                                @item.Gia VNĐ
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                        <div class="owl-nav"><button type="button" role="presentation" class="owl-prev"><i class="ti-angle-left"></i>
+                             </button><button type="button" role="presentation" class="owl-next"><i class="ti-angle-right"></i></button></div><div class="owl-dots"><button role="button" class="owl-dot active"><span></span></button><button role="button" class="owl-dot"><span></span></button></div>
+                </div>
+            </div>
+            </div>
+
+            <div class="col-lg-3 offset-lg-1">
+                <div class="product-large set-bg m-large" data-setbg="~../../Content/Site/img/products/man-large.jpg">
+                    <h2>Thời trang nam</h2>
+                    <a href="~/SanPham/DanhSachSanPham/?danhmuc=1">Xem</a>
+                </div>
+                </div>
+            
+        </div>
+    </div>
+</section>

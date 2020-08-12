@@ -1,0 +1,171 @@
+﻿@model List<MutiShopDataContext.Model.SanPham>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@{ 
+    var Id = Request.Cookies["infomation"];
+    var checkId = "";
+    if(Id != null)
+    {
+        checkId = Id.Value;
+    }
+}
+@{ Html.RenderAction("Header", "Home"); }
+<div class="breacrumb-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="breadcrumb-text product-more">
+                    <a href="./home.html"><i class="fa fa-home"></i> Trang chủ</a>
+                    <a href="./shop.html">Sản phẩm</a>
+                    <span>Shopping Cart</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<section class="shopping-cart spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="cart-table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Ảnh</th>
+                                <th class="p-name"></th>
+                                <th>Giá</th>
+                                <th>Số lượng</th>
+                                <th>Thành tiền</th>
+                                <th><i class="ti-close"></i></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td class="cart-pic first-row"><img src="~/Upload/images/@item.Anh" alt="" width="270px" height="300px"></td>
+                                    <td class="cart-title first-row">
+                                        <h5>@item.TenSanPham</h5>
+                                    </td>
+                                    <td class="p-price first-row">@item.Gia VND</td>
+                                    <td class="qua-col first-row">
+                                        <input class="IdSanPham" value="@item.Id" style="display:none" />
+                                        <div class="quantity">
+                                            <div class="pro-qty">
+                                                <input onchange="KeyUp(@item.Gia)" class="soluong" onkeyup="KeyUp(@item.Gia)" id="count" type="number" value="1" min="1">
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="total-price first-row" id="total">
+                                        <input style="background:#e2e2e2"  class="tongtien" name="TongTien" value="@item.Gia" readonly="readonly" />
+                                    </td>
+                                    <td class="close-td first-row"><a href="~/DatHang/XoaDathang/@item.Id"><i class="ti-close"></i></a></td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+                <div class="row">
+                    <div class="col-lg-4">
+                        <div class="cart-buttons">
+                            <a onclick="UpdateCart()" class="primary-btn up-cart">Cập nhật tiền</a>
+                        </div>
+                        <div class="discount-coupon">
+                            <h6>Mã giảm giá</h6>
+                            <form action="#" class="coupon-form">
+                                <input name="mgg" id="mgg" type="text" placeholder="Nhập mã">
+                            </form>
+                            
+                        </div>
+                    </div>
+                    @{ 
+                        int tongtien = 0;
+                    }
+                    <div class="col-lg-4 offset-lg-4">
+                        <div class="proceed-checkout">
+                            <ul>
+                                @foreach (var sp in Model)
+                                {
+                                    tongtien += sp.Gia.Value * 1;
+                                }
+                                <li class="cart-total">Total <span id="too">@tongtien VND</span></li>
+                            </ul>
+                            @if (checkId == "")
+                            {
+                                <a href="~/Autenlt/DangNhap" class="proceed-btn">Đăng nhập</a>
+                            }
+                            else
+                            {
+                                <a onclick="XacNhanDatHang()" class="proceed-btn">Đặt ngay</a>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<script>
+   var check = 0;
+    function UpdateCart()
+    {
+        var tong =0;
+        var tongtien = document.getElementsByClassName("tongtien");
+        for (var i = 0; i < tongtien.length; i++) {
+            tong = tong + parseInt(tongtien[i].value);
+        }
+        $("#too").remove();
+        $(".cart-total").append('<span id="too">'+tong+' VND</span>');
+    }
+    async function XacNhanDatHang()
+    {
+        if (check === 0)
+        {
+            var idsps = document.getElementsByClassName("IdSanPham");
+        var soluongs = document.getElementsByClassName("soluong");
+        var diachi = document.getElementsByClassName("diachi").value;
+        var acount = @checkId;
+            for (var i = 0; i < idsps.length; i++)
+            {
+                datas = {
+                    MaDat: acount+ new Date().toJSON(),
+                    NguoiDat: acount,
+                    IdSanPham: idsps[i].value,
+                    TrangThai: 0,
+                    SoLuong: soluongs[i].value,
+                    DiaChiGiaoHang: diachi
+                };
+                await $.ajax({
+                    method: "POST",
+                    url: result + "/DatHang/XacNhanDatHang",
+                    data: JSON.stringify(datas),
+                    contentType: "application/json"
+                }).done(async function (data) {
+                    await $.ajax({
+                        method: "GET",
+                        url: result + "/DatHang/DeleteGioHang/" + datas.IdSanPham,
+                        contentType: "application/json"
+                    }).done(async function (data) {
+
+                    });
+                });
+          
+            }
+            check = 1;
+            alert("đặt thành công. cửa hàng sẽ sớm liên hệ bạn");
+            window.location.href = result + '/Acount';
+        }
+
+    }
+     function KeyUp(GiaSanPham)
+     {
+         var soluong = $("#count").val();
+         var tongtien = soluong * GiaSanPham;
+         $(".tongtien").val(tongtien);
+    }
+</script>
+@{ Html.RenderAction("Footer", "Home"); }
+
+

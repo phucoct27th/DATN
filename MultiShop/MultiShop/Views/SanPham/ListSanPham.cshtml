@@ -1,0 +1,68 @@
+﻿@model List<MutiShopDataContext.Model.SanPham>
+<div class="col-lg-9 order-1 order-lg-2">
+    <div class="product-show-option">
+        <div class="row">
+            <div class="col-lg-7 col-md-7">
+                <div class="select-option">
+                   
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="product-list">
+        <div class="row">
+            @foreach (var item in Model)
+            {
+                <div class="col-lg-4 col-sm-6">
+                    <div class="product-item">
+                        <div class="pi-pic">
+                            <img src="~/Upload/images/@item.Anh" width="270px" height="300px" alt="">
+                            <div class="icon">
+                                <i class="icon_heart_alt"></i>
+                            </div>
+                            <ul>
+                                <li class="w-icon active"><a href="#"  onclick="DatHang(@item.Id)"><i class="icon_bag_alt"></i></a></li>
+                                <li class="quick-view"><a href="#">Xem</a></li>
+                                <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
+                            </ul>
+                        </div>
+                        <div class="pi-text">
+                            <div class="catagory-name"></div>
+                            <a href="~/SanPham/Chitiet/@item.Id">
+                                <h5>@item.TenSanPham</h5>
+                            </a>
+                            <div class="product-price">
+                                @item.Gia VNĐ
+                                <span>
+                                    @{
+                                        int giacu = item.Gia.Value + 50000;
+                                    }
+                                    @giacu VND
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+    
+</div>
+<script>
+    async function DatHang(Id)
+    {
+        var datas = {
+            IdSanPham: Id
+        };
+        await $.ajax({
+            method: "POST",
+            url: result + "/DatHang/ThemDatHang",
+            data: JSON.stringify(datas),
+            contentType: "application/json"
+        }).done(async function (data) {
+            console.log(data)
+        });
+    }
+</script>
+

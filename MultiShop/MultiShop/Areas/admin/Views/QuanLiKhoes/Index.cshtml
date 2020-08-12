@@ -1,0 +1,104 @@
+﻿@model PagedList.IPagedList<MutiShopDataContext.Model.Kho>
+@using PagedList.Mvc
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/admin/Views/Shared/View.cshtml";
+}
+
+    <div class="wrapper">
+        @{Html.RenderAction("MainHeader", "Home"); }
+        @{Html.RenderAction("Menu", "Home"); }
+        <div class="content-wrapper" style="min-height: 53.7361px;">
+            <section class="content">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h3 class="card-title text-primary"><b>Quản lý kho</b>
+                                    </h3>
+                                    <a href="~/admin/QuanLiKhoes/Create" class="float-right">
+                                        <button type="button" class="btn btn-primary">Thêm mới</button>
+                                    </a>
+                                </div>
+                                <div class="card-body">
+                                    <div id="example2_wrapper" class="dataTables_wrapper dt-bootstrap4">
+                                        <div class="row"><div class="col-sm-12 col-md-6"></div><div class="col-sm-12 col-md-6"></div></div><div class="row">
+                                            <div class="col-sm-12">
+                                                <table id="example2" class="table table-bordered table-hover dataTable dtr-inline" role="grid" aria-describedby="example2_info">
+                                                    <thead>
+                                                        <tr role="row">
+                                                            <th class="sorting_asc" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">STT</th>
+                                                            <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Tên kho</th>
+                                                            <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Sản phẩm trong kho</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+
+                                                        @foreach (var item in Model.OrderByDescending(d => d.Id))
+                                                        {
+                                                            <tr role="row" class="odd">
+                                                                <td tabindex="0" class="sorting_1">@item.Id</td>
+                                                                <td>@item.TenKho</td>
+                                                                <td>
+                                                                    <table>
+                                                                        <tr>
+                                                                            <th>STT</th>
+                                                                            <th>Tên sp</th>
+                                                                            <th>Số lượng</th>
+                                                                            <th>Ngày thêm</th>
+                                                                            <th>Người thêm</th>
+                                                                            
+                                                                        </tr>
+                                                                    @foreach (var it in item.QuanLiKhoes)
+                                                                    {
+                                                                        <tr>
+                                                                            <td>@it.Id</td>
+                                                                            <td>@it.SanPham.TenSanPham</td>
+                                                                            <td>@it.SoLuong</td>
+                                                                            <td>@it.NgayNhap</td>
+                                                                            <td>@it.QuanTri1.HoVaTen</td>
+                                                                            <td>
+                                                                                <a href="~/admin/QuanLiKhoes/Edit/@item.Id">
+                                                                                    <i class="fas fa-edit"></i>
+                                                                                </a>
+                                                                                |
+                                                                                <a href="~/admin/QuanLiKhoes/Delete/@item.Id">
+                                                                                    <i class="fa fa-trash" aria-hidden="true"></i>
+                                                                                </a>
+                                                                            </td>
+
+                                                                        </tr>
+                                                                    }
+                                                                    </table>
+
+                                                                </td>
+
+                                                            </tr>
+                                                        }
+
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-12 col-md-7">
+                                                <div class="dataTables_paginate paging_simple_numbers" id="example2_paginate">
+                                                    @Html.PagedListPager(Model, page => Url.Action("Index", new { page }),
+                                                   new PagedListRenderOptions
+                                                   {
+                                                       LiElementClasses = new string[] { "paginate_button page-item " },
+                                                   })
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+        @{Html.RenderAction("Footer", "Home"); }
+    </div>

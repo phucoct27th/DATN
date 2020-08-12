@@ -1,0 +1,72 @@
+﻿@model MutiShopDataContext.Model.XuatKho
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Areas/admin/Views/Shared/View.cshtml";
+}
+
+    <div class="wrapper">
+        @{Html.RenderAction("MainHeader", "Home"); }
+        @{Html.RenderAction("Menu", "Home"); }
+        <div class="content-wrapper" style="min-height: 53.7361px;">
+            <h3>Có chắc bạn muốn xoá</h3>
+            <div>
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+
+                    <div class="form-actions no-color">
+                        <input type="submit" value="Delete" class="btn btn-default" /> |
+                        @Html.ActionLink("Back to List", "Index")
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+<div>
+    <h4>XuatKho</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.QuanLiKho.Id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.QuanLiKho.Id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.QuanTri.HoVaTen)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.QuanTri.HoVaTen)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NgayXuat)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NgayXuat)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SoLuong)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SoLuong)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

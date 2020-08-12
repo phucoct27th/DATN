@@ -1,0 +1,29 @@
+﻿
+@{
+    ViewBag.Title = "DanhSachSanPham";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@{ Html.RenderAction("Header", "Home"); }
+<div class="breacrumb-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="breadcrumb-text">
+                    <a href="#"><i class="fa fa-home"></i> Trang chủ</a>
+                    <span>Sản phẩm</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<section class="product-shop spad">
+    <div class="container">
+        <div class="row">
+            @{ Html.RenderAction("TimKiem", "SanPham"); }
+
+            @{ Html.RenderAction("ListSanPham", "SanPham"); }
+        </div>
+    </div>
+</section>
+@{ Html.RenderAction("Footer", "Home"); }

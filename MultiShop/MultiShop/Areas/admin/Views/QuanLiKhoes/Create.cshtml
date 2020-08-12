@@ -1,0 +1,56 @@
+﻿@model MutiShopDataContext.Model.QuanLiKho
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Areas/admin/Views/Shared/View.cshtml";
+}
+
+    <div class="wrapper">
+        @{Html.RenderAction("MainHeader", "Home"); }
+        @{Html.RenderAction("Menu", "Home"); }
+        <div class="content-wrapper" style="min-height: 53.7361px;">
+            <h2 class="text-primary">Quản lý kho</h2>
+
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="form-horizontal">
+                    <h4 class="text-primary">Quản lí kho</h4>
+                    <hr />
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="form-group">
+                        <label class="control-label col-md-2">Thêm vào kho</label>
+                        <div class="col-md-10">
+                            @Html.DropDownList("IdKho", null, htmlAttributes: new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.IdKho, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label col-md-2">Sản phẩm cần thêm</label>
+                        <div class="col-md-10">
+                            @Html.DropDownList("IdSanPham", null, htmlAttributes: new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.IdSanPham, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" value="Thêm" class="btn btn-success" />
+                        </div>
+                    </div>
+                </div>
+            }
+
+            <div>
+                @Html.ActionLink("Back to List", "Index")
+            </div>
+
+        </div>
+        @{Html.RenderAction("Menu", "Home"); }
+    </div>
+
+
+
+

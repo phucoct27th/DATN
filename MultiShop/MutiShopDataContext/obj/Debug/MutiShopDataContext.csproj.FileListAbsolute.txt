@@ -1,0 +1,12 @@
+D:\DEV3\MultiShop\MutiShopDataContext\bin\Debug\MutiShopDataContext.dll.config
+D:\DEV3\MultiShop\MutiShopDataContext\bin\Debug\MutiShopDataContext.dll
+D:\DEV3\MultiShop\MutiShopDataContext\bin\Debug\MutiShopDataContext.pdb
+D:\DEV3\MultiShop\MutiShopDataContext\bin\Debug\EntityFramework.dll
+D:\DEV3\MultiShop\MutiShopDataContext\bin\Debug\EntityFramework.SqlServer.dll
+D:\DEV3\MultiShop\MutiShopDataContext\bin\Debug\EntityFramework.xml
+D:\DEV3\MultiShop\MutiShopDataContext\bin\Debug\EntityFramework.SqlServer.xml
+D:\DEV3\MultiShop\MutiShopDataContext\obj\Debug\MutiShopDataContext.csprojAssemblyReference.cache
+D:\DEV3\MultiShop\MutiShopDataContext\obj\Debug\MutiShopDataContext.csproj.CoreCompileInputs.cache
+D:\DEV3\MultiShop\MutiShopDataContext\obj\Debug\MutiShopDataContext.csproj.CopyComplete
+D:\DEV3\MultiShop\MutiShopDataContext\obj\Debug\MutiShopDataContext.dll
+D:\DEV3\MultiShop\MutiShopDataContext\obj\Debug\MutiShopDataContext.pdb

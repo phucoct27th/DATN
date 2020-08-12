@@ -1,0 +1,23 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <script>
+        var url = window.location.href;
+        var arr = url.split("/");
+        var result = arr[0] + "//" + arr[2];
+        function delayer() {
+            window.location = result + '/admin/Home';
+        }
+    </script>
+    <meta name="viewport" content="width=device-width" />
+    <title>Lỗi Phân Quyền</title>
+</head>
+<body onLoad="setTimeout('delayer()', 1500)">
+    <p style="font-size:70px; color:red; text-align:center">Bạn không có quyền truy cập vào trang này!</p>
+</body>
+</html>
